@@ -149,29 +149,20 @@ async def send_media_to_discord(message):
         await channel.send(f"Clip from Instagram: {clip_url}") # type: ignore
 
 # Fetch username by user ID
-def fetch_instagram_username(user_id):
-    if user_id == 2147554699:
-        return 'Midhun Antony'
-    elif user_id == '51953998893':
-        return "Amith"
-    elif user_id == '62196248090':
-        return "bot"
-    elif user_id == '52238548444':
-        return 'Sahl'
-    else:   
-        try:
-            user_info = cl.user_info(user_id)
-            return user_info.username
-        except RateLimitError:
-            print("Rate limit exceeded while fetching username. Waiting for a while before retrying...")
-            time.sleep(300)  # Wait for 5 minutes before retrying
-            return fetch_instagram_username(user_id)
-        except Exception as e:
-            print(f"Failed to fetch username for user ID {user_id}: {e}")
-            handled = handle_exception(cl, e)
-        if not handled:
-            # Handle the exception further or re-raise it
-            raise
+def fetch_instagram_username(user_id):  
+    try:
+        user_info = cl.user_info(user_id)
+        return user_info.username
+    except RateLimitError:
+        print("Rate limit exceeded while fetching username. Waiting for a while before retrying...")
+        time.sleep(300)  # Wait for 5 minutes before retrying
+        return fetch_instagram_username(user_id)
+    except Exception as e:
+        print(f"Failed to fetch username for user ID {user_id}: {e}")
+        handled = handle_exception(cl, e)
+    if not handled:
+        # Handle the exception further or re-raise it
+        raise
         
 
 # Function to send message to    Instagram group
@@ -245,6 +236,7 @@ async def fetch_and_send_messages(message_limit):
 
 
 bot.run(DISCORD_TOKEN)
+
 
 
 
