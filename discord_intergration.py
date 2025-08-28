@@ -14,7 +14,7 @@ import os
 # Instagram login credentials
 USERNAME = ''
 PASSWORD = ''
-INSTAGRAM_THREAD_ID = 340282366841710301281157199448462624174
+INSTAGRAM_THREAD_ID = # you can get this by opening insta on the web and copying the numbers part of the link for eg (https://instagram.com/direct/t/35643787567834583) copy the 3564..... part only and paste here
 SESSION_FILE = 'session.json'
 LAST_MESSAGE_FILE = 'last_message.json'
 
@@ -245,5 +245,6 @@ async def fetch_and_send_messages(message_limit):
 
 
 bot.run(DISCORD_TOKEN)
+
 
 
