@@ -1,3 +1,3 @@
 # discord-insta
-A project to integrate instagram into discord, i gave up after several methods of trying to evade meta's anti bot measures failed and the instagram account repeatedly got suspended
+Python bot that fetches Instagram messages and forwards them to a Discord server, integrating the Discord API with Instagram.
 # Deprecated
