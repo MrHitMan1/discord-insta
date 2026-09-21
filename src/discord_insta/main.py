@@ -26,6 +26,8 @@ def main():
     from discord_insta.config import config
     from discord_insta.discord_bot import bot
 
+    config.validate_required()
+
     try:
         bot.run(config.discord_token)
     except KeyboardInterrupt:

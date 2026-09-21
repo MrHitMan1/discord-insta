@@ -30,3 +30,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest tests/ -v
+      env:
+        IG_USERNAME: test_burner_user
+        IG_PASSWORD: test_burner_pass
+        IG_THREAD_ID: "123456789"
+        DISCORD_TOKEN: test_discord_token
+        DISCORD_CHANNEL_ID: "987654321"
