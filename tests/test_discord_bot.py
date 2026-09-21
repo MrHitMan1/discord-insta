@@ -1,4 +1,4 @@
-from unittest.mock import AsyncMock, MagicMock, patch, PropertyMock
+from unittest.mock import AsyncMock, MagicMock, PropertyMock, patch
 
 import discord
 import pytest
@@ -41,8 +41,10 @@ async def test_on_message_forwards_to_instagram(bot, mock_config):
     message.channel.id = mock_config.discord_channel_id
     message.attachments = []
     
-    with patch("discord_insta.discord_bot.async_send_message", new_callable=AsyncMock) as mock_send, \
-         patch.object(type(bot), "user", new_callable=PropertyMock) as mock_user:
+    with (
+        patch("discord_insta.discord_bot.async_send_message", new_callable=AsyncMock) as mock_send,
+        patch.object(type(bot), "user", new_callable=PropertyMock) as mock_user,
+    ):
         mock_user.return_value = MagicMock(id=999)
         bot.process_commands = AsyncMock()
         await bot.on_message(message)
@@ -60,8 +62,10 @@ async def test_on_message_with_attachment(bot, mock_config):
     attachment.url = "http://example.com/image.png"
     message.attachments = [attachment]
     
-    with patch("discord_insta.discord_bot.async_send_message", new_callable=AsyncMock) as mock_send, \
-         patch.object(type(bot), "user", new_callable=PropertyMock) as mock_user:
+    with (
+        patch("discord_insta.discord_bot.async_send_message", new_callable=AsyncMock) as mock_send,
+        patch.object(type(bot), "user", new_callable=PropertyMock) as mock_user,
+    ):
         mock_user.return_value = MagicMock(id=999)
         bot.process_commands = AsyncMock()
         await bot.on_message(message)
